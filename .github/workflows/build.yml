@@ -106,5 +106,6 @@ jobs:
 
       - name: Ruby version, build and test
         run: |
-          ruby -v -e 'p RUBY_PLATFORM'
+          printenv
+          ruby -v -e 'p RUBY_PLATFORM.include?("cygwin")'
           rake test:run:serial
