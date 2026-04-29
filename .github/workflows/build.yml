@@ -102,10 +102,12 @@ jobs:
       - name: Setup Cygwin
         uses: cygwin/cygwin-install-action@711d29f3da23c9f4a1798e369a6f01198c13b11a # v6.1
         with:
-          packages: gcc-g++ ruby
+          packages: gcc-g++ ruby ruby-gem ruby-rake
 
       - name: Ruby version, build and test
         run: |
-          printenv
-          ruby -v -e 'p RUBY_PLATFORM.include?("cygwin")'
+          which ruby
+	  ruby -v
+	  which rake
+	  rake -v
           rake test:run:serial
