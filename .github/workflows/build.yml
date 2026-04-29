@@ -107,7 +107,7 @@ jobs:
       - name: Ruby version, build and test
         run: |
           which ruby
-	  ruby -v
-	  which rake
-	  rake -v
+          ruby -v
+          which rake
+          rake -v
           rake test:run:serial
