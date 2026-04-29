@@ -87,7 +87,7 @@ jobs:
 
   Windows-Cygwin:
     runs-on: windows-2025
-    timeout-minutes: 10
+    timeout-minutes: 11
     env:
       MRUBY_CONFIG: ci/gcc-clang
       CC: gcc
