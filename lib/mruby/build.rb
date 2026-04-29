@@ -201,7 +201,11 @@ module MRuby
         []
       elsif ENV['OS'] == 'Windows_NT' ||
             ('A'..'Z').any? { |v| Dir.exist?("#{v}:") }
-        ['win']
+        if RUBY_PLATFORM.include?("cygwin")
+          ['posix']
+        else
+          ['win']
+        end
       else
         ['posix']
       end

@@ -84,3 +84,31 @@ jobs:
         run: |
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
           rake -m test:run:serial
+
+  Windows-Cygwin:
+    runs-on: windows-2025
+    timeout-minutes: 10
+    env:
+      MRUBY_CONFIG: ci/gcc-clang
+      CC: gcc
+      CXX: g++
+      LD: gcc
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Setup Cygwin
+        uses: egor-tensin/setup-cygwin@6b3f4874b51ddfd58a0cb05143afd08803622f39 # v4.0.2
+        with:
+          packages: gcc-g++ ruby ruby-rake
+
+      - name: Ruby version
+        shell: Cygwin {0}
+        run: ruby -v
+
+      - name: Build and test
+        shell: Cygwin {0}
+        run: |
+          rake test:run:serial   # -m option brings us to a deadlock or something.
