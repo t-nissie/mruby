@@ -106,5 +106,5 @@ jobs:
 
       - name: Ruby version, build and test
         run: |
-          ruby -v
+          ruby -v -e 'p RUBY_PLATFORM'
           rake test:run:serial
