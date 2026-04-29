@@ -102,7 +102,7 @@ jobs:
       - name: Setup Cygwin
         uses: cygwin/cygwin-install-action@711d29f3da23c9f4a1798e369a6f01198c13b11a # v6.1
         with:
-          packages: gcc-g++ ruby ruby-gem
+          packages: gcc-g++ ruby rubygems
 
       - name: Ruby and Rake version, build and test
         run: |
@@ -110,5 +110,5 @@ jobs:
           ruby -v -e 'p RUBY_PLATFORM'
           gem install rake   # ruby-rake package does not wrok properly.
           which rake
-          rake -v
+          rake --version
           rake test:run:serial
