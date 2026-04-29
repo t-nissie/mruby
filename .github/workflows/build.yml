@@ -104,11 +104,14 @@ jobs:
         with:
           packages: gcc-g++ ruby ruby-rake
 
+      - name: Initialize Cygwin home
+        shell: Cygwin {0}
+        run: echo "init"
+
       - name: Ruby version
         shell: Cygwin {0}
         run: ruby -v
 
       - name: Build and test
         shell: Cygwin {0}
-        run: |
-          rake test:run:serial   # -m option brings us to a deadlock or something.
+        run: rake test:run:serial   # -m option brings us to a deadlock or something.
